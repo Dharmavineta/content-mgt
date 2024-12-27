@@ -12,14 +12,13 @@ Include relevant emojis and hashtags. Encourage discussion.`;
 };
 
 export const generateTwitterPrompt = (article: GNewsArticle) => {
-  return `Write a concise and attention-grabbing tweet about this news article:
+  return `Write a concise and attention-grabbing twitter thread about this news article:
 
 Headline: ${article.title}
 Summary: ${article.description}
 Source: ${article.source.name}
 Link: ${article.url}
-
-Include relevant hashtags.`;
+`;
 };
 
 export const generateLinkedInPrompt = (article: GNewsArticle) => {
@@ -49,6 +48,7 @@ export const generateBlogPrompt = (article: GNewsArticle) => {
 Title: ${article.title}
 Content Summary: ${article.description}
 Original Source: ${article.source.name}
+
 Original Article URL: ${article.url}
 
 The blog post should be well-structured with headings and subheadings. Focus on providing value to the reader and include relevant keywords naturally within the text for search engine optimization.`;

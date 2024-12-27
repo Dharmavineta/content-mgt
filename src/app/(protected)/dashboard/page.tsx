@@ -1,9 +1,10 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NewsSearch from "./components/news-search";
 import NewsCard from "./components/news-card";
 import { Button } from "@/components/ui/button";
 import { generateSocialPost } from "@/actions";
+import MDEditor from "@uiw/react-md-editor";
 
 export type GNewsResponse = {
   totalArticles: number;
@@ -13,8 +14,7 @@ export type GNewsResponse = {
 export type GNewsArticle = {
   title: string;
   description: string;
-  content?: string; // Optional property, might not be available depending on subscription
-  url: string;
+  content?: string;
   image: string;
   publishedAt: string;
   source: {
@@ -24,7 +24,8 @@ export type GNewsArticle = {
 };
 
 const Dashboard = () => {
-  const [news, setNews] = React.useState<GNewsArticle[]>([]); // Properly typed state
+  const [news, setNews] = useState<GNewsArticle[]>([]); // Properly typed state
+  const [newsAPI, setNewsAPI] = useState("");
 
   useEffect(() => {
     const storedNews = localStorage.getItem("news-articles");
